@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Selection</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome to SciAstra</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="#">Courses</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="courses">
+        <h2>Discounted Courses</h2>
+        <div id="course-list">
+            <div class="course-item">
+                <h3>Course 1</h3>
+                <button onclick="redirectToPayment('course1')">Select</button>
+            </div>
+            <div class="course-item">
+                <h3>Course 2</h3>
+                <button onclick="redirectToPayment('course2')">Select</button>
+            </div>
+            <div class="course-item">
+                <h3>Course 3</h3>
+                <button onclick="redirectToPayment('course3')">Select</button>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function redirectToPayment(courseId) {
+            // Store the selected course ID in the session or URL to use on the payment page
+            localStorage.setItem('selectedCourse', courseId);
+            window.location.href = '/payment.html';  // Redirect to the payment page
+        }
+    </script>
+</body>
+</html>

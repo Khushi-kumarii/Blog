@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Payment for Course</h1>
+    </header>
+
+    <section id="payment">
+        <h2>Choose a Payment Method</h2>
+        <form id="payment-form">
+            <label for="payment-method">Select Payment Method:</label>
+            <select id="payment-method" required>
+                <option value="credit-card">Credit Card</option>
+                <option value="debit-card">Debit Card</option>
+                <option value="upi">UPI</option>
+            </select>
+
+            <button type="submit">Proceed to Payment</button>
+        </form>
+
+        <!-- OTP Verification Modal -->
+        <div id="otp-verification" style="display: none;">
+            <h3>Enter OTP</h3>
+            <input type="text" id="otp" placeholder="Enter OTP (4 digits)" required>
+            <button onclick="verifyOtp()">Verify OTP</button>
+        </div>
+    </section>
+
+    <script>
+        // Show OTP verification form when payment method is selected
+        document.getElementById('payment-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const paymentMethod = document.getElementById('payment-method').value;
+            alert('You selected ' + paymentMethod);
+            
+            // Simulate OTP process
+            showOtpVerification();
+        });
+
+        function showOtpVerification() {
+            document.getElementById('otp-verification').style.display = 'block';
+        }
+
+        function verifyOtp() {
+            const otp = document.getElementById('otp').value;
+            
+            // Check if the OTP is a 4-digit number
+            if (otp.length === 4 && !isNaN(otp)) {
+                alert('OTP Verified! Proceeding with Payment...');
+                window.location.href = '/thank-you';  // Redirect to the thank you page
+            } else {
+                alert('Invalid OTP. Please enter a 4-digit OTP.');
+            }
+        }
+    </script>
+</body>
+</html>

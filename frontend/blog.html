@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <h2>Blog Posts</h2>
+    <div id="blog-list"></div>
+
+    <h3>Add a New Blog Post</h3>
+    <form id="addBlogForm">
+        <input type="text" id="title" placeholder="Title" required>
+        <textarea id="content" placeholder="Content" required></textarea>
+        <input type="datetime-local" id="publish_time" required>
+        <button type="submit">Add Blog</button>
+    </form>
+
+    <script>
+        document.getElementById('addBlogForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const title = document.getElementById('title').value;
+            const content = document.getElementById('content').value;
+            const publish_time = document.getElementById('publish_time').value;
+
+            fetch('/add-blog', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ title, content, publish_time })
+            })
+            .then(response => response.text())
+            .then(data => {
+                alert(data);
+                window.location.reload();
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    </script>
+</body>
+</html>
